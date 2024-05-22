@@ -23,7 +23,7 @@ const getSizes = () => {
   return [bodyWidth, bodyHeight];
 };
 
-const getRndInteger = (array, min = 17.5) => {
+const getRndInteger = (array, min = 125) => {
   const valueXCoord = Math.floor(Math.random() * (array[0] - min) ) + min;
   const valueYCoord = Math.floor(Math.random() * (array[1] - min) ) + min;
   return [valueXCoord, valueYCoord];
@@ -33,4 +33,3 @@ const performAction = (sprite, randomCoordArray) => {
   sprite.style.left = `${randomCoordArray[0]}px`;
   sprite.style.top = `${randomCoordArray[1]}px`;
 };
-
