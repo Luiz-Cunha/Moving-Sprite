@@ -21,15 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const bodyQuery = document.querySelector('body');
 
   let idleTimeout;
+  let cursorPosition = { x: 0, y: 0 };
 
-  const resetIdleTimer = () => {
+  const resetIdleTimer = (event) => {
     if (idleTimeout) {
       clearTimeout(idleTimeout);
     }
-    idleTimeout = setTimeout(timeElapsedIdle, 4000);
+    cursorPosition.x = event.clientX;
+    cursorPosition.y = event.clientY;
+    idleTimeout = setTimeout(getCursor, 4000);
   };
 
-  const timeElapsedIdle = () => {
+  const getCursor = () => {
+    console.log(cursorPosition.x);
+    console.log(cursorPosition.y);
     console.log('Mouse has been idle for 4 seconds');
   };
 
@@ -44,5 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   bodyQuery.addEventListener('mousemove', resetIdleTimer);
 
-  resetIdleTimer();
+  resetIdleTimer({ clientX: 0, clientY: 0 });
 });
