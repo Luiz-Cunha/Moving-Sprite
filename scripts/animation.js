@@ -21,10 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let idleTimeout;
   let cursorPosition = { x: 0, y: 0 };
+  let flag = 0;
 
   const resetIdleTimer = () => {
     if (idleTimeout) {
       clearTimeout(idleTimeout);
+      flag=0;
     }
     idleTimeout = setTimeout(runningBackAction, 4000);
   };
@@ -51,8 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const spriteYCoordInt = parseInt(spriteYCoord, 10);
     console.log(`New X Value: ${cursorPosition.x}`);
     console.log(`New Y Value: ${cursorPosition.y}`);
-    if (spriteXCoordInt === cursorPosition.x && spriteYCoordInt === cursorPosition.y) {
+    if (spriteXCoordInt === cursorPosition.x && spriteYCoordInt === cursorPosition.y && flag === 0) {
+
       alert("Move away");
+      flag = 1;
     }
     stopAnimation();
   });
