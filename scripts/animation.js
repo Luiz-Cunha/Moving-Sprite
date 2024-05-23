@@ -55,7 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`New Y Value: ${cursorPosition.y}`);
     if (spriteXCoordInt === cursorPosition.x && spriteYCoordInt === cursorPosition.y && flag === 0) {
 
-      alert("Move away");
+      Swal.fire({
+        title: 'Warning!',
+        text: 'Move away!!!!',
+        icon: 'warning',
+        confirmButtonText: 'Okay'
+      });
       flag = 1;
     }
     stopAnimation();
