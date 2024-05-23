@@ -11,9 +11,9 @@ const getRndInteger = (array, min = 125) => {
   return [valueXCoord, valueYCoord];
 };
 
-const performAction = (sprite, randomCoordArray) => {
-  sprite.style.left = `${randomCoordArray[0]}px`;
-  sprite.style.top = `${randomCoordArray[1]}px`;
+const performAction = (sprite, array) => {
+  sprite.style.left = `${array[0]}px`;
+  sprite.style.top = `${array[1]}px`;
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,12 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     cursorPosition.x = event.clientX;
     cursorPosition.y = event.clientY;
-    idleTimeout = setTimeout(getCursor, 4000);
+    idleTimeout = setTimeout(runningBackAction, 4000);
   };
 
-  const getCursor = () => {
+  const runningBackAction = () => {
     console.log(cursorPosition.x);
     console.log(cursorPosition.y);
+    performAction(movingSprite, [cursorPosition.x, cursorPosition.y]);
+    // Need to remove the PX from the return of the canva element
+    const spriteXCoord = movingSprite.style.left.match(/\d+/)[0];
+    const spriteYCoord = movingSprite.style.top.match(/\d+/)[0];
+    // Convert into number
+    const spriteXCoordInt = parseInt(spriteXCoord, 10);
+    const spriteYCoordInt = parseInt(spriteYCoord, 10);
+    console.log(typeof spriteXCoord);
+    console.log(typeof spriteYCoord);
+    movingSprite.addEventListener('transitionend', (event) => {
+      if (spriteXCoordInt === cursorPosition.x && spriteYCoordInt === cursorPosition.y) {
+        alert("Move away");
+      }
+    });
     console.log('Mouse has been idle for 4 seconds');
   };
 
