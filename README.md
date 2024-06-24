@@ -1,4 +1,4 @@
-## Interactive Chicken Animation
+h## Interactive Chicken Animation
 
 This JavaScript project features an interactive chicken animation. The chicken responds dynamically to cursor movements: it runs away when the cursor gets close, and moves towards the cursor when it remains stationary some time. This engaging behavior is implemented using a canvas element.
 
